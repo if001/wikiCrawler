@@ -1,3 +1,6 @@
+import json
+
+
 class InfoBox():
     def __init__(self):
         self.title = ""
@@ -6,11 +9,11 @@ class InfoBox():
         self.character_design = []
         self.production_company = []
         self.broadcasts = []
-        self.publisher = [] #出版社
-        self.original_work = [] # 原作
-        self.label = [] # ？
-        self.music = [] # 音楽
-        self.number_of_story = 0 # 話数
+        self.publisher = []  # 出版社
+        self.original_work = []  # 原作
+        self.label = []  # ？
+        self.music = []  # 音楽
+        self.number_of_story = 0  # 話数
 
     def self_print(self):
         print(self.title)
@@ -25,3 +28,6 @@ class InfoBox():
         print(self.music)
         print(self.number_of_story)
 
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4,  ensure_ascii=False)
