@@ -3,6 +3,7 @@ import re
 from common.htmlFilter import HtmlFilter
 from model.animeSet import AnimeSet
 from model.infoBox import InfoBox
+from model.cvSet import CvSet
 from const.infoBoxConst import InfoBoxConst
 
 
@@ -146,3 +147,28 @@ class HtmlBodyGetter():
                 anime_set = AnimeSet(title, year, season, stage)
                 anime_list.append(anime_set)
                 print(anime_set.toJSON())
+
+    @classmethod
+    def get_cast(cls, lines):
+        """
+        名前がリンクになっている声優のみを抽出
+        声優|声 が以下のようなリンクになっているので、
+        -（ハイフン)で区切って、1つめの要素([[声優|声]])を飛ばした中から
+        声優名をピックアップする
+        [[声優|声]] - [[花澤香菜]]&
+        """
+        cv_list = []
+        for line in lines:
+            if ("声優|声" in line) or ("声 - " in line):
+                result = re.findall('\[+(.*?.)\]+', line.split("-")[1])
+            else:
+                result = []
+
+            # 複数リンクがある場合には、1つ目のリンクを声優名とする
+            if len(result) > 1:
+                cv_list += [result[0]]
+            else:
+                cv_list += result
+
+        cv_set = CvSet(cv_list)
+        print(cv_set.toJSON())

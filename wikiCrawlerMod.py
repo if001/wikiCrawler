@@ -16,21 +16,18 @@ def crawler(title, box_type):
 
 
 def main():
-    # from common.htmlFilter import HtmlFilter
-    # line = "|タイトル= はたらく細胞"
-    # a = HtmlFilter.any_or_filter([
-    #     HtmlFilter.bracket_filter,
-    #     HtmlFilter.single_equal_filter,
-    #     HtmlFilter.equal_space_filter
-    # ], line)
-    # print(a)
-    # exit(0)
     # title = "魔法少女まどか☆マギカ"
     # title = "はたらく細胞"
     # crawler(title, HtmlBodyGetter.get_infobox)
 
-    title = "深夜アニメ一覧"
-    crawler(title, HtmlBodyGetter.get_anime_list)
+    title = "進撃の巨人 (アニメ)"
+    title = "魔法少女まどか☆マギカ"
+    title = "はたらく細胞"
+    title = "ハイスコアガール"
+    crawler(title, HtmlBodyGetter.get_cast)
+
+    # title = "深夜アニメ一覧"
+    # crawler(title, HtmlBodyGetter.get_anime_list)
 
 
 if __name__ == '__main__':
