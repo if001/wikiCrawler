@@ -1,0 +1,4 @@
+class OutputFormatter():
+    pass
+
+
